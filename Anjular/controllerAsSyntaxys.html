@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html ng-app ='app'>
+
+<head>
+
+<meta charset="UTF-8">
+<title>Examples</title>
+
+<script src = 'https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js'></script>
+<script>
+
+var app = angular.module('app', []);
+
+app.controller('mainCtrl', function($scope){
+	
+	this.myLesson = 'lesson';
+	
+	this.addLesson = function(){
+		console.log('add main lesson')	;
+	}
+	$scope.mainCrtl = this; // bad to do
+});
+
+app.controller('firstCrtl', function(){
+	
+	this.myLesson = 'lesson1';
+});
+
+app.controller('secondCrtl', function(){
+	
+	this.myLesson = 'lesson2';
+});
+
+
+
+</script>
+</head>
+
+
+
+
+<body>
+	<div ng-controller = 'mainCtrl'>
+		<div ng-controller = 'firstCrtl as first'>
+			<div ng-controller = 'secondCrtl as secondCrtl'>
+		
+				{{first.myLesson}}
+		<button ng-click = 'mainCrtl.addLesson()'>Add Main Lesson</button>
+			</div>
+		</div>
+	</div>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html ng-app ='app'>
+
+<head>
+
+<meta charset="UTF-8">
+<title>Examples</title>
+
+<script src = 'https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js'></script>
+<script>
+
+var app = angular.module('app',[]);
+
+app.run(function($templateCache){
+	
+	$templateCache.put('bookmarks.html', "<div ng-repeat ='bookmark in bookmarks'> {{bookmark.name}}</div>")
+	
+	
+});
+
+var BOOKMARKS = [{
+	
+	id:1,
+	name:'Spring'
+	
+	},
+	
+	{
+	id:2,
+	name:'EmberJS'
+	},
+	
+	{
+		id:3,
+		name:'AngularJS'
+	}
+
+
+];
+
+
+app.directive('fooBar', function($templateCache){
+	return {
+		restrict: 'E',
+		templateUrl:'bookmarks.html',
+		link: function (scope, element, attrs){
+			scope.bookmarks = BOOKMARKS;
+			console.log($templateCache);
+		}
+	}
+})
+
+</script>
+
+
+</head>
+
+
+<body>
+
+<foo-bar></foo-bar>
+
+
+<!--  <script type = 'text/ng-template' id='bookmarks.html'>
+
+<div ng-repeat = 'bookmark in bookmarks'>
+{{bookmark.name}}
+</div>
+-->
+</script>
+
+
+</body>
+
+
+</html>
